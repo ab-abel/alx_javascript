@@ -5,5 +5,6 @@
  */
 
 function add(x, y) {
+    //this function return the additon of x, y
     return x + y;
 }
