@@ -3,11 +3,8 @@
  * x times a funxtion
  */
 
-function callMeMoby(x, y){
-    y();
-    return x * y;
-}
-
-callMeMoby(3, function () {
-    console.log('C is fun');
-});
+exports.callMeMoby = function (x, theFunction) {
+    for (let i = 0; i < x; i++){
+        theFunction();
+    };
+};
