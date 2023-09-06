@@ -4,4 +4,8 @@
  * of two files in JS
  */
 
-export let add = (x, y) => x + y;
+export function add(x, y) {
+    //returb the addition of x,y
+    return x + y;
+}
+
