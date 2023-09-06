@@ -4,6 +4,6 @@
  * of two files in JS
  */
 
-function add(x, y){
+function add(x, y) {
     return x + y;
 }
