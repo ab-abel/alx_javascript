@@ -3,6 +3,11 @@
  * x times a funxtion
  */
 
-function callMeMoby(x, theFunction){
-    return x * theFunction;
+function callMeMoby(x, y){
+    y();
+    return x * y;
 }
+
+callMeMoby(3, function () {
+    console.log('C is fun');
+});
