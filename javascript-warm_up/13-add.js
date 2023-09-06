@@ -1,5 +1,5 @@
 /**
- * add a file
+ * a file
  * this function return the addition of 
  * of two files in JS
  */
