@@ -1,6 +1,6 @@
 /**
  * a file
- * this function return the addition of 
+ * this function return the plus of 
  * of two files in JS
  */
 
