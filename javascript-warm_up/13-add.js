@@ -4,4 +4,4 @@
  * of two files in JS
  */
 
-let add = (x, y) => x + y;
+const add = (x, y) => x + y;
