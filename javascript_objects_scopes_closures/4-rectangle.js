@@ -29,8 +29,9 @@ module.exports = class Rectangle {
     }
 
     double() {
-        for (let i = 0; i < this.width * 2; i++) {
-            console.log('X' .repeat(this.height * 2));
-        };
+        let w = this.width * 2;
+        let h = this.height * 2;
+        this.width = h;
+        this.height = w; 
     }
 }
