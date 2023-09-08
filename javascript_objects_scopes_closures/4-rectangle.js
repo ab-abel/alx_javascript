@@ -22,8 +22,10 @@ module.exports = class Rectangle {
     // rotate the rect
 
     rotate() {
-        this.width = this.height;
-        this.height = this.width;
+        let w = this.width;
+        let h = this.height;
+        this.width = h;
+        this.height = w;
     }
 
     double() {
