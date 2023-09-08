@@ -1,3 +1,4 @@
+#!/usr/bin/node
 // a class that defines rectangs
 
 module.exports = class Rectangle {

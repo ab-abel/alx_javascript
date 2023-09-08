@@ -1,3 +1,4 @@
+#!/usr/bin/node
 // this code return nul if w or w <=0
 
 module.exports = class Rectangle {
