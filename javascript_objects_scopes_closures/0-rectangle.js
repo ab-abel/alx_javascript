@@ -2,10 +2,8 @@
  * empty class that defines rectangles
  */
 
- class Rectangle {
-    //empty class
-    
+class Rectangle {
     constructor(){
         
     }
- }
+}
