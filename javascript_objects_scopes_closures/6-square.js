@@ -11,7 +11,7 @@ module.exports = class Square extends Sq {
         if(c == null){
             super.print();
         } else {
-            super.print('C');
+            super.print(c);
         }
     }
 
