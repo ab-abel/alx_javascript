@@ -3,5 +3,9 @@
  */
 
  class Rectangle {
-
+    //empty class
+    
+    constructor(){
+        
+    }
  }
