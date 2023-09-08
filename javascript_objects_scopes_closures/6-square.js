@@ -2,7 +2,7 @@
 
 const Sq = require("./5-square");
 
-module.extracts = class Square extends Sq {
+module.exports = class Square extends Sq {
     constructor(value){
         super(value);
     }
