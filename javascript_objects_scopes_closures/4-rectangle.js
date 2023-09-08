@@ -15,7 +15,7 @@ module.exports = class Rectangle {
     // print square from recttangle
     print(x = 'X') {
         for (let i = 0; i < this.height; i++) {
-            onsole.log(x .repeat(this.width));
+            console.log(x.repeat(this.width));
         };
     }
 
