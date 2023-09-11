@@ -8,5 +8,5 @@ url = `https://swapi-api.alx-tools.com/api/films/${process.argv[2]}`;
 
 // get the request 
 req(url, function(error, responce, body){
-    console.log('error:', error || JSON.parse(body).title);
+    console.log(error || JSON.parse(body).title);
 });
