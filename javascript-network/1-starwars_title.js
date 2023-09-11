@@ -6,9 +6,7 @@ const req = require('request');
 // get id from terminal
 url = `https://swapi-api.alx-tools.com/api/films/${process.argv[2]}`;
 
-// the n
-req.get(url, {encoding: 'utf-8'})
-    .on('data', data => {
-        const resp = JSON.parse(data);
-        console.log(resp.title);
-    })
+// get the request 
+req(url, function(error, responce, body){
+    console.log('error:', error || JSON.parse(body).title);
+});
