@@ -2,7 +2,9 @@
 
 const url = process.argv[2];
 
-const path_to_store = process.agrv[3];
+if(process.argv > 2) {
+    const path_to_store = process.agrv[3];
+}
 
 const request = require('request');
 const fs = require('fs');
