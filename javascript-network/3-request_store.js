@@ -4,5 +4,5 @@ const request = require('request');
 const fs = require('fs');
 
 
-request(url, {encoding:'utf-8'});
-    result.pipe(fs.createWriteStream(process.argv[3]));
+request(url, {encoding:'utf-8'})
+  .pipe(fs.createWriteStream(process.argv[3]));
