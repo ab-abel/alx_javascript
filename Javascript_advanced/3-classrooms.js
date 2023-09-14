@@ -10,7 +10,7 @@ function createClassRoom(numbersOfStudents) {
      */
     function studentSeat(seat) {
         // return a funtion that return seat
-        return function(){
+        return function() {
             return seat;
         }; 
     }
