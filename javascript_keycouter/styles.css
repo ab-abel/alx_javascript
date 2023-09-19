@@ -1,0 +1,16 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+/* Reset some default margin and padding */
+body{
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', 'Robote', Tahoma, Geneva, Verdana, sans-serif;
+    flex-direction: column;
+  }
+.content {
+    display: flex;
+    flex-direction: column;
+}
