@@ -8,9 +8,16 @@ textArea.onkeydown = function(event) {
     const output = document.getElementById('display');
     let keyStroke = event.key;
 
-    // if(!ignoreKey  
-    if(keyStroke) {
-        output.textContent = `the button is pressed ${counter} times`
+    if(!ignoreKey.includes(keyStroke)) {
+        counter++;
     }
-    counter++;
+    else if (keyStroke === 'Backspace' && counter > 0) 
+    {
+        counter = counter - 1;
+    } 
+    if(counter >= 50){
+        alert("Maximum characters should be " + counter);
+        return;
+    }
+    output.textContent = `You types ${counter} character(s)`;
 }
