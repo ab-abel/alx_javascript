@@ -24,14 +24,35 @@
             <form>
                 <input type="text" placeholder="Firstname" id="firstname" />
                 <input type="text" id="email" placeholder="Email"/>
-                <button id="login" type="submit" onclick="setCookies()">Log me in</button>
+                <button id="login" onclick="setCookies()">Log me in</button>
             </form>
             <h1>Cookies</h1>
             <form>
-                <button id="show_cookies" type="submit" onclick="showCookies()">Show the cookies</button>
+                <button id="show_cookies"  onclick="showCookies(this)">Show the cookies</button>
             </form>
         </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
-    <script src="src/index.js"></script>
+    <script >
+        
+
+function setCookies () {
+        const firstname = document.getElementById('firstname').value;
+        const email = document.getElementById('email').value;
+        
+        if(firstname && email){
+            Cookies.set('firstname', firstname);
+            Cookies.set('email', email);
+        }
+}
+
+function showCookies () {
+        
+        const show_cookies = document.createElement('p');
+        show_cookies.innerHTML = 'Cookies:' + Cookies.get();
+        document.body.appendChild(show_cookies);  
+}
+
+
+    </script>
 </html>
