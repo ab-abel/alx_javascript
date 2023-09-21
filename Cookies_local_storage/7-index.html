@@ -20,12 +20,11 @@
         </title>
     </head>
     <body>
-        <div class="content" id="content">
-            <div></div>
+        <div class="content" >
+            <div id="content"></div>
             <!-- <h2 id="msg"></h2> -->
-            
+            <div id="added-cart"></div>
         </div>
-        <div class="content"  id="added-cart"></div>
     </body>
     <script>
         // this script use localsession that ends when that tab is closed
@@ -84,7 +83,12 @@
                 cart[item] = cart[item] - 1;
                 sessionStorage.setItem('cart', JSON.stringify(cart));
             }else if (cart[item] < 1){
-                delete cart[item];
+                // delete cart[item];
+                delete cart;
+                console.log(item);
+                console.log(cart[item])
+                console.log(Object.keys(cart))
+                availableItems.pop(item);
             }
             displayCart();
         }
@@ -137,20 +141,24 @@
             });
 
             const cart = getCartFromStorage();
-            //check if cart is empty
-            if(Object.keys(cart).length != 0){
+      
+            if(cart != null || cart != undefined){
                 Object.keys(cart).forEach(function(key){
-                    // console.log('Key : ' + key + ', Value : ' + cart[key])
-                    const cart_li = document.createElement('li');
-                    cart_li.textContent = `${key} ${cart[key]} QUANTITY (remove)`;
-                    ul.appendChild(cart_li);
-                    cart_div.appendChild(ul);
+                    if(Object.values(cart) != 0){
+                        const cart_li = document.createElement('li');
+                        cart_li.textContent = `${key} ${cart[key]} QUANTITY (remove)`;
+                        ul.appendChild(cart_li);
+                        cart_div.appendChild(ul);
+                        cart_li.addEventListener('click', () => {
+                            removeItemfromCart(key);
+                         })
+                    }
 
-                    cart_li.addEventListener('click', () => {
-                        removeItemfromCart(key);
-                    })
                 })
-            } else {
+            }
+               
+            else {
+                const cart_li = document.createElement('li');
                 cart_li.textContent = 'Your cart is empty';
                 cart_div.appendChild(cart_li);
             }
