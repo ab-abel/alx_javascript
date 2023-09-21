@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body{
+                height: 100vh;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Segoe UI', 'Robote', Tahoma, Geneva, Verdana, sans-serif;
+                flex-direction: column;
+            }
+
+        </style>
+        <title>
+            Cookies
+        </title>
+    </head>
+    <body>
+        <div class="content" id="content">
+            <!-- <h1 id="msg"></h1> -->
+        </div>
+    </body>
+    <script>
+        // this script use localsession that ends when that tab is closed
+
+
+        // shopping cart array
+        const availableItems = ['Shampoo','Soap','Sponge','Water'];
+
+        // check if browser support local storage
+        if (typeof(Storage) !== "undefined") {
+
+        // Code for localStorage/sessionStorage.
+            createStore();
+            displayCart();
+        } else {
+            // if not available
+            alert('Sorry, your browser does not support Web storage. Try again with a better one');
+        }
+        
+        // add item to cart
+        function addItemToCart (item) {
+            // add a key to local storage and set value to true
+           sessionStorage.setItem(item, true); 
+        }
+
+        // add items to the local storage
+        function createStore(){
+
+            // get the content div from tehe pg
+            const content = document.getElementById('content');
+
+            // creat an unordered list element
+            const ul_list = document.createElement('ul');
+
+            // loop through the list of avialable items
+            for (let i = 0; i < availableItems.length; i++) {
+
+                // create a list element
+                const list = document.createElement('li');
+                
+                // set the content of the list
+                list.textContent = availableItems[i];
+
+                // add the content to the unordered list
+                ul_list.appendChild(list);
+
+                // add the content to the page
+                content.appendChild(ul_list);
+
+                // check if a user click items
+                list.addEventListener('click', ()=>{
+
+                    // add the clicked item to the storage
+                    addItemToCart(`${availableItems[i]}`);
+                })
+            }
+
+        }
+
+        // this display the no. of items the user has added
+        function displayCart(){
+
+            // check if the Session storage is empty
+            if(sessionStorage.length !== 1){
+
+                // create a p tag to display the element
+               const p_attribute = document.createElement('p');
+
+               //  add content to the tag created
+               p_attribute.textContent = `You previously had ${sessionStorage.length - 1} items in your cart`;
+               
+                // append to the body of the page
+               document.body.appendChild(p_attribute);
+            }else{
+                // this will only run if the cart is empty
+            } 
+        }
+
+        // createStore();
+    </script>
+</html>
