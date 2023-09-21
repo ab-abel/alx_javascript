@@ -29,8 +29,8 @@
         const availableItems = ['Shampoo','Soap','Sponge','Water'];
 
         // check if browser support local storage
-
         if (typeof(Storage) !== "undefined") {
+
         // Code for localStorage/sessionStorage.
             createStore();
             displayCart();
@@ -45,30 +45,56 @@
            localStorage.setItem(item, true); 
         }
 
+        // add items to the local storage
         function createStore(){
+
+            // get the content div from tehe pg
             const content = document.getElementById('content');
+
+            // creat an unordered list element
             const ul_list = document.createElement('ul');
+
+            // loop through the list of avialable items
             for (let i = 0; i < availableItems.length; i++) {
+
+                // create a list element
                 const list = document.createElement('li');
-                // list.setAttribute('href',`#`);
+                
+                // set the content of the list
                 list.textContent = availableItems[i];
+
+                // add the content to the unordered list
                 ul_list.appendChild(list);
+
+                // add the content to the page
                 content.appendChild(ul_list);
 
+                // check if a user click items
                 list.addEventListener('click', ()=>{
+
+                    // add the clicked item to the storage
                     addItemToCart(`${availableItems[i]}`);
                 })
             }
 
         }
 
+        // this display the no. of items the user has added
         function displayCart(){
+
+            // check if the storage is empty
             if(localStorage.length !== 0){
+
+                // create a p tag to display the element
                const p_attribute = document.createElement('p');
+
+               //  add content to the tag created
                p_attribute.textContent = `You previously had ${localStorage.length} items in your cart`;
+               
+                // append to the body of the page
                document.body.appendChild(p_attribute);
             }else{
-
+                // this will only run if the cart is empty
             } 
         }
 
