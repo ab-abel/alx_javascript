@@ -21,8 +21,11 @@
     </head>
     <body>
         <div class="content" id="content">
+            <div></div>
             <!-- <h2 id="msg"></h2> -->
+            
         </div>
+        <div class="content"  id="added-cart"></div>
     </body>
     <script>
         // this script use localsession that ends when that tab is closed
@@ -74,6 +77,7 @@
             displayCart();
         }
 
+
         function removeItemfromCart(item){
             let cart = JSON.parse(sessionStorage.getItem('cart'));
             if(cart.hasOwnProperty(item) && cart[item] > 0){
@@ -84,6 +88,7 @@
             }
             displayCart();
         }
+
 
         function clearCart() {
             sessionStorage.clear();
@@ -109,7 +114,8 @@
 
 
         function displayCart() {
-            const content = document.getElementById('content');
+            const content = document.getElementById('added-cart');
+            content.innerHTML  = '';
             const your_cart = document.createElement('h2');
             your_cart.textContent = 'Your cart:';
             content.appendChild(your_cart);
@@ -121,14 +127,14 @@
 
 
         function updateCart() {
-            const cart_div = document.getElementById('content');
+            const cart_div = document.getElementById('added-cart');
             const ul = document.createElement('ul');
             const li = document.createElement('li');
             li.textContent = 'Clear my cart';
             ul.appendChild(li);
             li.addEventListener('click', ()=>{
                 clearCart();
-            })
+            });
 
             const cart = getCartFromStorage();
             //check if cart is empty
