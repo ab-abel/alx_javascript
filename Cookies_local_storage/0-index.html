@@ -49,7 +49,7 @@ function setCookies () {
 function showCookies () {
         
         const show_cookies = document.createElement('p');
-        show_cookies.innerHTML = 'Cookies:' + Cookies.get();
+        show_cookies.innerHTML = 'Cookies:' + document.cookie;
         document.body.appendChild(show_cookies);  
 }
 
