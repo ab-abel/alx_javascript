@@ -1,46 +1,173 @@
-7. Advanced use of web storage
-mandatory
-In a new file, let’s build a more advanced cart system using Session Storage. Setup your files with the following:
+<!DOCTYPE html>
+<html lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body{
+                height: 100vh;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Segoe UI', 'Robote', Tahoma, Geneva, Verdana, sans-serif;
+                flex-direction: column;
+            }
 
-Create an array availableItems that will contain all the available items. Add the strings Shampoo, Soap, Sponge, and Water to the array
-If session storage is not enabled on your browser, display an alert that will contain the message Sorry, your browser does not support Web storage. Try again with a better one
-If session storage is available it should allow the user to see the application and call the function createStore and displayCart
-Create a function getCartFromStorage:
+        </style>
+        <title>
+            Cookies
+        </title>
+    </head>
+    <body>
+        <div class="content" >
+            <div id="content"></div>
+            <!-- <h2 id="msg"></h2> -->
+            <div id="added-cart"></div>
+        </div>
+    </body>
+    <script>
+        // this script use localsession that ends when that tab is closed
 
-It should parse a string into a JSON object, returning the content of the cart stored in Session storage
-If there is no cart, it should return an empty object
-Create a function addItemToCart:
 
-It accepts item(string) as argument
-It adds to the cart object the item
-If the same item is added multiple times, the cart store the quantity
-It stores the value of the cart object in a string for the key cart in the Session Storage
-It calls displayCart
-Create a function removeItemfromCart:
+        // shopping cart array
+        const availableItems = ['Shampoo','Soap','Sponge','Water'];
 
-It accepts item(string) as argument
-It remove the entire item from the cart
-Store the value of the cart object in a string for the key cart in the Session Storage
-It calls displayCart
-Create a function clearCart:
+        // check if browser support local storage
+        if (typeof(Storage) !== "undefined") {
 
-It should clear the entire Session storage
-it calls displayCart
-Create a function createStore:
+        // Code for localStorage/sessionStorage.
+            createStore();
+            displayCart();
+        } else {
+            // if not available
+            alert('Sorry, your browser does not support Web storage. Try again with a better one');
+        }
+        
 
-It should add a h2 tag with the text Available products:
-It should add a list with every item available for purchase
-When the user click on an item, it should add it to the cart
-Create a function displayCart:
+        function getCartFromStorage() {
+            if(sessionStorage.length >= 0){
+                const cart_object = JSON.parse(sessionStorage.getItem('cart'));
+                return cart_object;
+            } else {
+                return '';
+            }
+        }
 
-It should add inside a h2 tag with the text Your cart:
-It should add an empty div tag
-If the div tag already exist, it should remove any list child
-It calls updateCart
-Create a function updateCart:
 
-It should add a list to the div tag created previously
-If the cart is empty, it should add an item Your cart is empty
-If the cart is not empty, it should add the list of items within the cart with the following format: ITEM_NAME x QUANTITY (remove)
-When the user clicks on remove, it should call the function removeItemfromCart
-At the top of the cart, add an item named Clear my cart. When the user clicks on it, it should call the function clearCart
+        function addItemToCart(item) {
+            // get the current cart items
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || {};
+
+            // check if cart has value with item as key
+            if (cart.hasOwnProperty(item)){
+
+                // increament the cart
+                cart[item]++;
+            }else{
+
+                // asign one to the cart
+                cart[item] = 1;
+            }
+            // set the cart witthe item value
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+
+            // show the cart
+            displayCart();
+        }
+
+
+        function removeItemfromCart(item){
+            let cart = JSON.parse(sessionStorage.getItem('cart'));
+            if(cart.hasOwnProperty(item) && cart[item] > 1){
+                cart[item] = cart[item] - 1;
+                
+                sessionStorage.setItem('cart', JSON.stringify(cart));
+            }else if (cart[item] <= 1){
+                const cart_to_str = JSON.stringify(cart);
+                delete cart[item];
+                // console.log(cart[item]);
+                
+                // console.log(JSON.parse(sessionStorage.getItem('cart')));
+                // sessionStorage.removeItem('cart');
+                sessionStorage.setItem('cart', JSON.stringify(cart));
+            }
+            displayCart();
+        }
+
+
+        function clearCart() {
+            sessionStorage.clear();
+            displayCart();
+        }
+
+        function createStore() {
+            const content = document.getElementById('content');
+            const avalable_product = document.createElement('h2');
+            avalable_product.textContent = 'Available products:';
+            content.appendChild(avalable_product);
+            const ul = document.createElement('ul');
+            availableItems.forEach(item =>{
+                const li = document.createElement('li');
+                li.textContent = item;
+                ul.appendChild(li);
+                content.appendChild(ul);
+                li.addEventListener('click', ()=>{
+                    addItemToCart(item);
+                });
+            });
+        }
+
+
+        function displayCart() {
+            const content = document.getElementById('added-cart');
+            content.innerHTML  = '';
+            const your_cart = document.createElement('h2');
+            your_cart.textContent = 'Your cart:';
+            content.appendChild(your_cart);
+            const div = document.createElement('div');
+            // div.setAttribute('id', 'js_div');
+            div.innerHTML = '';
+            updateCart();
+        }   
+
+
+        function updateCart() {
+            const cart_div = document.getElementById('added-cart');
+            const ul = document.createElement('ul');
+            const li = document.createElement('li');
+            li.textContent = 'Clear my cart';
+            ul.appendChild(li);
+            li.addEventListener('click', ()=>{
+                clearCart();
+            });
+
+            const cart = getCartFromStorage();
+      
+            if(cart != null || cart != undefined){
+                Object.keys(cart).forEach(function(key){
+                    if(Object.values(cart) >= 0){
+                        const cart_li = document.createElement('li');
+                        cart_li.textContent = `${key} ${cart[key]} QUANTITY (remove)`;
+                        ul.appendChild(cart_li);
+                        cart_div.appendChild(ul);
+                        cart_li.addEventListener('click', () => {
+                            removeItemfromCart(key);
+                         });
+                    };
+                });
+                // if(Object.keys(cart).length == 0){
+                // const cart_li = document.createElement('li');
+                // cart_li.textContent = 'Your cart is empty';
+                // cart_div.appendChild(cart_li);
+                // };
+            }  
+            else {
+                const cart_li = document.createElement('li');
+                cart_li.textContent = 'Your cart is empty';
+                cart_div.appendChild(cart_li);
+            }
+        }
+        
+    </script>
+</html>
