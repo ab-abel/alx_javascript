@@ -45,17 +45,28 @@
         }
         
 
+        // Return the avaialble cart from the storage
         function getCartFromStorage() {
+
+            // check if there is item in the session storage
             if(sessionStorage.length >= 0){
+
+                // convert the item to JSON object 
                 const cart_object = JSON.parse(sessionStorage.getItem('cart'));
+
+                // return the value
                 return cart_object;
+
             } else {
+
+                // this code block run if the session storage is empty
                 return '';
             }
         }
 
-
+        // this function add item to the session storage
         function addItemToCart(item) {
+
             // get the current cart items
             let cart = JSON.parse(sessionStorage.getItem('cart')) || {};
 
@@ -77,88 +88,183 @@
         }
 
 
+        // this function remove an item from storage
         function removeItemfromCart(item){
+
+            // Get current cart object
             let cart = JSON.parse(sessionStorage.getItem('cart'));
+
+            // check if the item is part of the object and the object is not empty
             if(cart.hasOwnProperty(item) && cart[item] > 1){
+
+                // decrement the value of the item if > 1
                 cart[item] = cart[item] - 1;
+
+                // write the current value back to the session storage
                 sessionStorage.setItem('cart', JSON.stringify(cart));
+
+            // this code block only run if u decreament cart to be less than 1
             }else if (cart[item] <= 1){
+
+                // remove object to remove item form the cart
                 delete cart[item];
+
+                // replace the cart with the new items
                 sessionStorage.setItem('cart', JSON.stringify(cart));
             }
+
+            // diplay the current cart
             displayCart();
         }
 
-
+        /***** WARNING!!! ********/
+        // This function delete everything in the session
         function clearCart() {
+
+            // clear storage session
             sessionStorage.clear();
+
+            // display the empty session
             displayCart();
         }
 
+        // this create item in the store
         function createStore() {
+
+            // get the HTML tag with attribute content
             const content = document.getElementById('content');
+
+            // create a h2 tag inside the content tag
             const avalable_product = document.createElement('h2');
+
+            // add text content to the tag
             avalable_product.textContent = 'Available products:';
+
+            // append it to the content tag of the page
             content.appendChild(avalable_product);
+
+            // create a ul element for the item lis
             const ul = document.createElement('ul');
+
+            // loop through the Item array 
             availableItems.forEach(item =>{
+
+                // create a list for each element
                 const li = document.createElement('li');
+
+                // add the arry item to the list
                 li.textContent = item;
+
+                // add the list the page
                 ul.appendChild(li);
+
+                // add to the content
                 content.appendChild(ul);
+
+                // check if the list item is clicked
                 li.addEventListener('click', ()=>{
+
+                    // add the item click to cart 
                     addItemToCart(item);
                 });
             });
         }
 
-
+        // call the display cart
         function displayCart() {
+
+            // get the id from the html
             const content = document.getElementById('added-cart');
+
+            // clear the content if not empty
             content.innerHTML  = '';
+
+            // create a H2 tag child element
             const your_cart = document.createElement('h2');
+
+            // added text content to it
             your_cart.textContent = 'Your cart:';
+
+            // added the text to the location on the html pg
             content.appendChild(your_cart);
-            const div = document.createElement('div');
-            // div.setAttribute('id', 'js_div');
-            div.innerHTML = '';
+
+            // call the update to do the magic
             updateCart();
         }   
 
-
+        // call the update cart to update function
         function updateCart() {
+            
+            // get the added carr tag just created
             const cart_div = document.getElementById('added-cart');
+            
+            // create a list elemet
             const ul = document.createElement('ul');
+
+            // create a document element
             const li = document.createElement('li');
+
+            // add neccessary text to it
             li.textContent = 'Clear my cart';
+
+            // add list to unorderd list
             ul.appendChild(li);
+
+            // listen to click event
             li.addEventListener('click', ()=>{
+
+                // clear everthing including your PC lol
                 clearCart();
             });
 
+            // get curent items on the cart
             const cart = getCartFromStorage();
       
+            // check if the request retunr empty
             if(cart != null || cart != undefined ){
+
+                // using the Object key loop through the cart
                 Object.keys(cart).forEach(function(key){
+
+                    // check if the cart object has values
                     if(Object.values(cart) != 0){
+
+                        // create a list from that values
                         const cart_li = document.createElement('li');
+
+                        // add the li text content
                         cart_li.textContent = `${key} ${cart[key]} QUANTITY (remove)`;
+
+                        // ad list to ul-list
                         ul.appendChild(cart_li);
+
+                        //add ul-list to the div
                         cart_div.appendChild(ul);
+
+                        // check if the item is cliked
                         cart_li.addEventListener('click', () => {
+
+                            // remove or decreament the clicked item
                             removeItemfromCart(key);
                          })
                     }
 
                 })
+
+                // if the cart is not null but has only default object property
                 if(Object.values(cart).length == 0 ){
+
+                    // create emty list element and add to the cart
                     const cart_li = document.createElement('li');
                     cart_li.textContent = 'Your cart is empty';
                     cart_div.appendChild(cart_li);
                 }
             }
                
+            // this run only if u force clear the cart
             else {
+
+                // create a list to list empty cart
                 const cart_li = document.createElement('li');
                 cart_li.textContent = 'Your cart is empty';
                 cart_div.appendChild(cart_li);
