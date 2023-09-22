@@ -138,7 +138,7 @@
 
             const cart = getCartFromStorage();
       
-            if(cart != null || cart != undefined){
+            if(cart != null || cart != undefined ){
                 Object.keys(cart).forEach(function(key){
                     if(Object.values(cart) != 0){
                         const cart_li = document.createElement('li');
@@ -151,6 +151,11 @@
                     }
 
                 })
+                if(Object.values(cart).length == 0 ){
+                    const cart_li = document.createElement('li');
+                    cart_li.textContent = 'Your cart is empty';
+                    cart_div.appendChild(cart_li);
+                }
             }
                
             else {
