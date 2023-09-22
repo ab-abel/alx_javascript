@@ -37,34 +37,32 @@
 File: 0-select-id.html
 
 ## Task 1
-###   Closure Scope Chain
-    - Create a variable named globalVariable with value Welcome
-    - Create a function outer that:
-        - alerts the content of the variable globalVariable
-        - creates a variable named course with value Holberton
-        - creates a function inner that:
-            - alerts the content of the variable globalVariable and course (concatenated)
-            - creates a variable named exclamation with value !
-            - creates a function inception that alerts the content of the variable globalVariable, course, and exclamation (concatenated)
-            - calls the function inception
-        - calls the function inner
-    - Call the function outer
+###  Selecting HTML Elements Using Selectors
+   Write a JavaScript program that demonstrates the use of selectors to select specific HTML elements.
 
-File: 1-nested_functions.js
+    Use the HTML code below as the starting point and add your JavaScript code as an internal <script> tag:
+    
+    -   Use the DOM API to modify the format of the <p class="highlight"> element to make the content boldened
+    - Make use of document.querySelectorAll
+    - Verify that the program successfully modifies the element content when the HTML file is opened in a browser.
+
+File: 1-select-class.html
 
 ## Task 2
-###  Closure
-Write a function named welcomeMessage:
+###  Modifying Element Content, Attributes, and Styles
+Write a JavaScript program that demonstrates the use of selectors to select specific HTML elements.
 
-    - It accepts one argument fullName (string)
-    - It should be a closure for an alert displaying Welcome <fullName>
-    After this function definition, create three variables:
+Use the HTML code below as the starting point and add your JavaScript code as an internal <script> tag:
 
-    - guillaume contains a call welcomeMessage with Guillaume as argument
-    - alex contains a call welcomeMessage with Alex as argument
-    - fred contains a call welcomeMessage with Fred as argument
+    - Write JavaScript code to select the <img> element using its id and store it in a variable.
+    - Use the DOM API to modify the following:
+        - the src to https://picsum.photos/200/301,
+        - the alt to New image
+        - the border style to 2px solid red
+    - Make use of document.getElementById
+    - Verify that the program successfully modifies the element content when the HTML file is opened in a browser.
 
-File: 6-multi_languages_loop.js
+File: 2-select-image.html
 
 ## Task 3
 ###  Object
