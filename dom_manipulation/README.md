@@ -65,86 +65,15 @@ Use the HTML code below as the starting point and add your JavaScript code as an
 File: 2-select-image.html
 
 ## Task 3
-###  Object
-Update this script to replace the value 12 with 89:
+###   Creating, Appending, and Removing Elements
+Write a JavaScript program that demonstrates the creation, appending, and removal of elements using the DOM.
 
-    - You are not allowed to use var
+Use the HTML code below as the starting point and add your JavaScript code as an internal <script> tag:
 
-example:
-    const myObject = {
-    type: 'object',
-    value: 12
-    };
-    console.log(myObject);
-    /*
-    YOUR CODE HERE
-    */
-    console.log(myObject);
+    - Write JavaScript code to select the container element using its id and store it in a variable.
+    - Use the DOM API to create a new <p> element, and add New paragraph as its content
+    - Append the newly created elements to the container element.
+    - Add a button that removes/hides the newly created paragraph when first click and shows it when clicked again
+    - Verify that the program successfully creates, appends, and toggles elements when the HTML file is opened in a browser.
 
-File: 12-object.js
-
-## Task 4
-###  Add file
-
-Write a function that returns the addition of 2 integers.
-
-    - The function must be visible from outside
-    - The name of the function must be add
-    - You are not allowed to use var
-
-File: 13-add.js
-
-#Advanced task
-
-## Task 5
-###  Const or not const
-
-Write a file that modifies the value of myVar to 333
-
-example:
-    myVar = 89;
-    require('./100-let_me_const')
-    console.log(myVar);
-    guillaume@ubuntu:~/$ ./100-main.js
-    333
-File: 100-let_me_const.js
-
-## Task 6
-###  Call me Moby
-Write a function that executes x times a function.
-
-    - The function must be visible from outside
-    - Prototype: function (x, theFunction)
-    - You are not allowed to use var
-
-example:
-    const addMeMaybe = require('./102-add_me_maybe').addMeMaybe;
-    addMeMaybe(4, function (nb) {
-    console.log('New value: ' + nb);
-    });
-
-File: 101-call_me_moby.js
-
-## Task 8
-###  Increment object
-Update this script by adding a new function incr that increments the integer value.
-
-    - You are not allowed to use var
-
-example:
-    const myObject = {
-    type: 'object',
-    value: 12
-    };
-    console.log(myObject);
-    /*
-    YOUR CODE HERE
-    */
-    myObject.incr();
-    console.log(myObject);
-    myObject.incr();
-    console.log(myObject);
-    myObject.incr();
-    console.log(myObject);
-
-File: 103-object_fct.js
+File: 3-multiple-actions.html
