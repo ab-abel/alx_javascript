@@ -138,15 +138,47 @@ Note: You may need to use event listeners or other appropriate techniques to det
 File: 2-dynamic-form.js, dynamic-form.html
 
 ## Task 3
-###   Creating, Appending, and Removing Elements
-Write a JavaScript program that demonstrates the creation, appending, and removal of elements using the DOM.
+###    Form Submission Handling
+Below is the content of form-submission.html:
 
-Use the HTML code below as the starting point and add your JavaScript code as an internal <script> tag:
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <form id="submitForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" >
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" >
+    <!-- Add more form fields as needed -->
+    <button type="submit">Submit</button>
+    </form>
+    </body>
+    </html>
 
-    - Write JavaScript code to select the container element using its id and store it in a variable.
-    - Use the DOM API to create a new <p> element, and add New paragraph as its content
-    - Append the newly created elements to the container element.
-    - Add a button that removes/hides the newly created paragraph when first click and shows it when clicked again
-    - Verify that the program successfully creates, appends, and toggles elements when the HTML file is opened in a browser.
+    Implement JavaScript to handle form submission and perform validation before submitting.
 
-File: 3-multiple-actions.html
+        - Write a function called handleFormSubmit to handle the form submission.
+
+        - Your JavaScript should be written in a separate file and used as an external script in the HTML code.
+
+        - Add an event listener to the form element to listen for the “submit” event and call the handleFormSubmit function.
+
+        - Inside the handleFormSubmit function, prevent the default form submission behavior using event.preventDefault().
+
+        - Retrieve the values entered in the form fields using JavaScript.
+
+        - Use JavaScript validation to ensure that all required fields are filled.
+
+        - Check if the “name” and “email” fields are filled. If any of them are empty, display the error message “Please fill in all required fields”.
+
+        - If all validations pass, display a success message “Form submitted successfully!” .
+
+        - If any validations fail, do not submit the form and allow the user to correct the errors before submitting again.
+
+    Note: You may need to use the DOM manipulation methods, such as getElementById(), to retrieve form field values and update the DOM to display error messages or success messages.
+File: 3-form-submission.js, form-submission.html
