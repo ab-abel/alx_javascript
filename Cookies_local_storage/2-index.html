@@ -24,7 +24,7 @@
             <form>
                 <input type="text" placeholder="Firstname" id="firstname" />
                 <input type="text" id="email" placeholder="Email"/>
-                <button id="login" type="submit" onclick="setCookies()">Log me in</button>
+                <button id="login" type="submit" >Log me in</button>
             </form>
             <h1>Cookies</h1>
             <form>
@@ -45,10 +45,17 @@
         }
 
         function showCookies () {
+            const show = document.getElementById('show_cookies');
+            show.addEventListener('click', function (e){
+            e.preventDefault();
             const show_cookies = document.createElement('p');
             show_cookies.innerHTML = 'Email:' + Cookies.get('email')+ ' - Firstname' + Cookies.get('firstname');
             document.body.appendChild(show_cookies);  
+            return true;
+            })
         }
+
+        // showCookies();
 
         function getCookie(name){
             const cookies_get = Cookies.get(name);

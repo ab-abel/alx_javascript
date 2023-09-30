@@ -28,7 +28,7 @@
             </form>
             <h1>Cookies</h1>
             <form>
-                <button id="show_cookies"  onclick="showCookies(this)">Show the cookies</button>
+                <button id="show_cookies" >Show the cookies</button>
             </form>
         </div>
     </body>
@@ -37,22 +37,27 @@
         
 
 function setCookies () {
-        const firstname = document.getElementById('firstname').value;
-        const email = document.getElementById('email').value;
         
-        if(firstname && email){
-            Cookies.set('firstname', firstname);
-            Cookies.set('email', email);
-        }
+    const firstname = document.getElementById('firstname').value;
+    const email = document.getElementById('email').value;
+    
+    if(firstname && email){
+        Cookies.set('firstname', firstname);
+        Cookies.set('email', email);
+    }
 }
 
 function showCookies () {
+        const show = document.getElementById('show_cookies');
+        show.addEventListener('click', function (e){
+            e.preventDefault();
+            const show_cookies = document.createElement('p');
+            show_cookies.innerHTML = 'Cookies:' + document.cookie;
+            document.body.appendChild(show_cookies);
         
-        const show_cookies = document.createElement('p');
-        show_cookies.innerHTML = 'Cookies:' + document.cookie;
-        document.body.appendChild(show_cookies);  
-}
-
+        });
+    }
+showCookies()
 
     </script>
 </html>
