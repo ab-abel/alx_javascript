@@ -2,10 +2,11 @@
     box-sizing: border-box;
 }
 /* Reset some default margin and padding */
-body, h1, p {
+body {
     margin: 0;
     padding: 0;
     background-color: black;
+    text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
@@ -87,3 +88,32 @@ nav {
     color:#3498db;
     /* border: 1px solid #3498db; */
   }
+
+
+  /* table styles */
+
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 40%;
+    margin: 0 auto;
+    /* display: flex; */
+    /* margin-top: -10%; */
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+.table-container {
+  height: 100vh;
+  display: flex;
+  background-color: #f0f0f0;
+  flex-direction: column;
+}

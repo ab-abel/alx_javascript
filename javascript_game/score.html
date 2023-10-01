@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="styles.css">
+        <title>
+            JS Game
+        </title>
+    </head>
+    <body>
+        <!-- Header page -->
+        <nav>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#">Check Score</a></li>
+            </ul>
+          </nav>
+        <!--  Main content -->
+
+        <section>
+            <!-- BAnner session -->
+            <div class="table-container">
+                <div >
+                    <h2>Player Score</h2>
+                    <table id="table">
+
+                    </table>
+                </div>
+            </div>
+        </section>
+        <script>
+
+            const table_data = document.getElementById('table');
+            const tr = document.createElement('tr');
+            const th1 = document.createElement('th');
+            th1.innerText = 'Name';
+            const th2 = document.createElement('th');
+            th2.innerText ='Score';
+            tr.appendChild(th1);
+            tr.appendChild(th2);
+            table_data.appendChild(tr);
+            
+            const players = getPlayersFromStorage();
+
+            // console.log(players);
+            Object.keys(players).forEach(function(key){
+                const tr = document.createElement('tr');
+                const td1 = document.createElement('td');
+                td1.innerText = players[key].name;
+                const td2 = document.createElement('td');
+                td2.innerText = players[key].score;
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                table_data.appendChild(tr);
+            });
+
+
+
+            function getPlayersFromStorage() {
+
+                // check if there is item in the session storage
+                if(localStorage.length > 0){
+
+                    // convert the item to JSON object 
+                    const players_object = JSON.parse(localStorage.getItem('players'));
+
+                    // return the value
+                    return players_object;
+
+                } else {
+
+                    // this code block run if the session storage is empty
+                    return '';
+                }
+            }
+            
+        </script>
+    </body>
+</html>
